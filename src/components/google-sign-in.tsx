@@ -1,19 +1,21 @@
 import { Button } from "@/components/ui/button";
-import { Github } from "@/components/ui/github";
+import { Google } from "@/components/ui/google";
+import { signIn } from "@/lib/auth";
 
-const GithubSignIn = () => {
+const GoogleSignIn = () => {
   return (
     <form
       action={async () => {
         "use server";
+        await signIn("google");
       }}
     >
       <Button className="w-full" variant="outline">
-        <Github />
-        Continue with GitHub
+        <Google />
+        Continue with Google
       </Button>
     </form>
   );
 };
 
-export { GithubSignIn };
+export { GoogleSignIn };
