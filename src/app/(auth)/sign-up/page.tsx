@@ -1,6 +1,7 @@
 import { GoogleSignIn } from "@/components/google-sign-in";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { signUp } from "@/lib/actions";
 import { auth } from "@/lib/auth";
 import Link from "next/link";
 import { redirect } from "next/navigation";
@@ -29,8 +30,12 @@ const Page = async () => {
       {/* Email/Password Sign Up */}
       <form
         className="space-y-4"
-        action={async () => {
+        action={async (formData) => {
           "use server";
+          const res = await signUp(formData);
+          if (res.success) {
+            redirect("/sign-in");
+          }
         }}
       >
         <Input
